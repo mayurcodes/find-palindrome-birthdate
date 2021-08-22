@@ -11,14 +11,29 @@ function clickEventHandler() {
         year: Number(birthdate[0])
     };
 
-    var palindromeCheck = checkPalindromeForDateFormats(dateInNum);
+    if (dateInput.value != "") {
 
-    if (palindromeCheck == true) {
-        outputDiv.innerHTML = "Awesome!!! Your birthdate is palindrom.";
+        var palindromeCheck = checkPalindromeForDateFormats(dateInNum);
 
-    } else
-        outputDiv.innerHTML = "Ooops....Your birthdate is not palindrome.";
-        console.log(nearPalindromeDate(dateInNum));
+        if (palindromeCheck == true) {
+            outputDiv.innerText = "Awesome!!! Your birthdate is a palindrom.";
+
+        } else {
+            var outputNextDate = nextPalindromeDate(dateInNum);
+            var outputPreviousDate = previousPalindromeDate(dateInNum);
+            
+            if (outputNextDate[0] < outputPreviousDate[0]) {
+                outputDiv.innerText = "Ooops....Your birthdate is not a palindrome. " + "\r\n The nearest palindrome date is " +   outputNextDate[1] + ", " + "you missed by " + outputNextDate[0] + ((outputNextDate[0] == 1) ? " day!!" : " days!!");
+            } else {
+                outputDiv.innerText = "Ooops....Your birthdate is not a palindrome. " + "\r\n The nearest palindrome date is " + outputPreviousDate[1] + ", " + "you missed by " + outputPreviousDate[0] + ((outputPreviousDate[0] == 1) ? " day!!" : " days!!");
+
+            }
+        }
+
+
+    } else {
+        outputDiv.innerText = "Please select date.";
+    }
 
 }
 
@@ -38,14 +53,15 @@ function checkPalindrome(bdate) {
 }
 
 function leapYear(year) {
-    if (year % 4 === 0) {
-        return true;
-    }
+
     if (year % 400 === 0) {
         return true;
     }
-    if(year % 100 === 0){
+    if (year % 100 === 0) {
         return false;
+    }
+    if (year % 4 === 0) {
+        return true;
     }
     return false;
 }
@@ -138,24 +154,83 @@ function getNextDate(bdate) {
     };
 }
 
-function nearPalindromeDate(bdate) {
+function nextPalindromeDate(bdate) {
     var daysCounter = 0;
-    var neardate = getNextDate(bdate);
+    var nextDate = getNextDate(bdate);
 
     while (1) {
         daysCounter++;
-        var isPalindrome = checkPalindromeForDateFormats(neardate);
+        var isPalindrome = checkPalindromeForDateFormats(nextDate);
         if (isPalindrome) {
             break;
         }
-        neardate = getNextDate(neardate);
+        nextDate = getNextDate(nextDate);
     }
 
     // do{
     //     daysCounter++;
-    //     var  isPalindrome = checkPalindromeForDateFormats(neardate);
-    //     neardate = getNextDate(neardate);
+    //     var  isPalindrome = checkPalindromeForDateFormats(nextDate);
+    //     nextDate = getNextDate(nextDate);
     // }while(isPalindrome != true)
 
-    return [daysCounter, neardate];
+    var nearDate = nextDate.day + "-" + nextDate.month + "-" + nextDate.year;
+
+    return [daysCounter, nearDate];
+}
+
+function getPreviousDate(bdate) {
+    var day = bdate.day - 1;
+    var month = bdate.month;
+    var year = bdate.year;
+
+    var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    if (day == 0) {
+        month--;
+
+        if (month == 0) {
+            year--;
+            month = 12;
+            day = 31;
+        } else if (month == 2) {
+            if (leapYear(year)) {
+                day = 29;
+            } else {
+                day = 28;
+            }
+        } else {
+            day = daysInMonth[month - 1];
+        }
+    }
+
+    return {
+        day: day,
+        month: month,
+        year: year
+    };
+}
+
+function previousPalindromeDate(bdate) {
+    var daysCounter = 0;
+    var previousDate = getPreviousDate(bdate);
+
+    for (;;) {
+        daysCounter++;
+        var isPalindrome = checkPalindromeForDateFormats(previousDate);
+        if (isPalindrome) {
+            break;
+        }
+        previousDate = getPreviousDate(previousDate);
+
+    }
+
+    // do{
+    //     daysCounter++;
+    //     var  isPalindrome = checkPalindromeForDateFormats(previousDate);
+    //     previousDate = getPreviousDate(previousDate);
+    // }while(isPalindrome != true)
+
+    var nearDate = previousDate.day + "-" + previousDate.month + "-" + previousDate.year;
+
+    return [daysCounter, nearDate];
 }

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #008C8C;
+    --btn-bg-color: #EEF0F5;
+    --btn-bg-hover-color: #D9DCDD;
+    --btn-hover-text-color: #5F6164;
+    --twitter-color: #55ACEE;
+    --linkedin-color: #007BB5;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0px;
+    background-image: url("/images/repeating-triangles.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container-center {
+    max-width: 500px;
+    padding: 0rem 1rem;
+    margin: auto;
+    text-align: center;
+}
+
+#heading{
+    font-size: large;
+}
+
+#info{
+    font-size: medium;
+    font-weight: lighter;
+}
+
+#input-date {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: block;
+    margin: auto;
+}
+
+#div-output {
+    text-align: center;
+    margin: 0rem 0rem 2.5rem 0rem;
+    font-size: large;
+}
+
+#button-check {
+    background-color: var(--btn-bg-color);
+    color: black;
+    margin: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+#button-check:hover {      
+    background-color: var(--btn-bg-hover-color);
+    color: var(--btn-hover-text-color);
+}
+
+.link {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+}
+
+.list-non-bullet {
+    list-style: none;
+}
+
+.list-item-inline {
+    display: inline;
+    padding: 0rem 0.5rem;
+}
+
+.footer {
+    padding: 3rem 1rem 0.8rem 1rem;
+    border-top-right-radius: 1rem;
+    text-align: center;
+    color: black;
+}
+
+.footer .footer-header {
+    font-weight: bold;
+    font-size: large;
+}
+
+/* .footer .link {
+    color: black;
+} */
+
+.footer ul {
+    padding-inline-start: 0px;
+}
+
+.fa {
+    padding: 0.5rem;
+    font-size: x-large;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.fa:hover {
+    opacity: 0.6;
+}
+
+.fa-twitter {
+    color: var(--twitter-color);
+}
+
+.fa-linkedin {
+
+    color: var(--linkedin-color);
+}
+
+.fa-github {
+    color: black;
+}
