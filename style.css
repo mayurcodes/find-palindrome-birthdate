@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
 
 :root {
     --primary-color: #008C8C;
@@ -10,7 +10,7 @@
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Noto Serif', serif;
     margin: 0px;
     background-image: url("/images/repeating-triangles.svg");
     background-repeat: no-repeat;
@@ -25,11 +25,11 @@ body {
     text-align: center;
 }
 
-#heading{
+h1{
     font-size: large;
 }
 
-#info{
+h2{
     font-size: medium;
     font-weight: lighter;
 }

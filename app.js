@@ -16,15 +16,18 @@ function clickEventHandler() {
         var palindromeCheck = checkPalindromeForDateFormats(dateInNum);
 
         if (palindromeCheck == true) {
-            outputDiv.innerText = "Awesome!!! Your birthdate is a palindrom.";
+            outputDiv.style.color = "darkgreen";
+            outputDiv.innerText = "Awesome!!! Your birthdate is a palindrome.";
 
         } else {
             var outputNextDate = nextPalindromeDate(dateInNum);
             var outputPreviousDate = previousPalindromeDate(dateInNum);
             
             if (outputNextDate[0] < outputPreviousDate[0]) {
+                outputDiv.style.color = "black";
                 outputDiv.innerText = "Ooops....Your birthdate is not a palindrome. " + "\r\n The nearest palindrome date is " +   outputNextDate[1] + ", " + "you missed by " + outputNextDate[0] + ((outputNextDate[0] == 1) ? " day!!" : " days!!");
             } else {
+                outputDiv.style.color = "black";
                 outputDiv.innerText = "Ooops....Your birthdate is not a palindrome. " + "\r\n The nearest palindrome date is " + outputPreviousDate[1] + ", " + "you missed by " + outputPreviousDate[0] + ((outputPreviousDate[0] == 1) ? " day!!" : " days!!");
 
             }
@@ -32,6 +35,7 @@ function clickEventHandler() {
 
 
     } else {
+        outputDiv.style.color = "red";
         outputDiv.innerText = "Please select date.";
     }
 
